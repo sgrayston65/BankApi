@@ -1,2 +1,18 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+# Automatically normalize line endings to LF in the repo, but convert to CRLF on checkout (for Windows users)
+* text=auto eol=lf
+
+# Ensure C# and Visual Studio files are treated as text
+*.cs     text diff=csharp
+*.csproj text
+*.sln    text
+*.config text
+
+# Prevent Git from trying to merge binary files
+*.png    binary
+*.jpg    binary
+*.exe    binary
+*.dll    binary
+*.vsidx  binary
+*.db     binary
+*.db-shm binary
+*.db-wal binary
