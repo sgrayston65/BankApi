@@ -1,2 +1,2 @@
 # BankApi
-Bank Api Example
+Bank API Example
