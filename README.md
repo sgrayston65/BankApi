@@ -22,8 +22,8 @@
 ## Getting Started
 Open a terminal and `run docker compose /Couchbase/Docker-Compose/docker-compose.yaml`.  
 Open a browser and go to http://localhost:8091.  
-Login with Username: Admin, Password: password to check that database.  
-Open solution from Visual Studio 2022 and run in debugger.  
+Login with Username: `Admin`, Password: `password` to check that database.  
+Open the BankApi solution (`BankApi.sln`) from Visual Studio 2022 and run in debugger.  
 
 ### Prerequisites
 
