@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  couchbase:
+    image: couchbase:community
+    container_name: couchbase-server
+    ports:
+      - "8091-8096:8091-8096"   # Couchbase Web Console and services
+      - "11210-11211:11210-11211" # Data/memcached ports
+    environment:
+      - COUCHBASE_ADMIN_USERNAME=admin
+      - COUCHBASE_ADMIN_PASSWORD=password
+    volumes:
+      - couchbase-data:/opt/couchbase/var
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8091/pools"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  couchbase-init:
+    image: couchbase:community
+    depends_on:
+      couchbase:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+        echo Waiting for Couchbase to start...;
+        sleep 10;
+        couchbase-cli cluster-init -c couchbase:8091 \
+          --cluster-username Administrator \
+          --cluster-password password \
+          --services data,index,query \
+          --cluster-ramsize 512 \
+          --cluster-index-ramsize 256 &&
+        couchbase-cli bucket-create -c couchbase:8091 \
+          -u Administrator -p password \
+          --bucket bank \
+          --bucket-type couchbase \
+          --bucket-ramsize 100 \
+          --wait;
+        echo Initialization complete.
+      "
+    restart: "no"      
+
+volumes:
+  couchbase-data:
