@@ -29,7 +29,7 @@ Open the BankApi solution (`BankApi.sln`) from Visual Studio 2022 and run in deb
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/en-us/download)
 - [Couchbase Server](https://www.couchbase.com/downloads)
-- Docker Desktop/Rancher Desktop, for running Couchbase locally
+- Docker Desktop(https://www.docker.com/products/docker-desktop/) / Rancher Desktop(https://rancherdesktop.io/), for running Couchbase locally
 
 ### Configuration
 
